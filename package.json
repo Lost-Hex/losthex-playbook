@@ -6,7 +6,7 @@
   "scripts": {
     "lint:markdown": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --rules tooling/lint-rules/",
     "lint:markdown:fix": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --rules tooling/lint-rules/ --fix",
-    "lint:prose": "vale --config .vale.ini docs/ teardowns/",
+    "lint:prose": "vale --config .vale.ini teardowns/ README.md",
     "lint:all": "npm run lint:markdown && npm run lint:prose",
     "prepare": "husky"
   },

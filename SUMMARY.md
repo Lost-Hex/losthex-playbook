@@ -1,9 +1,7 @@
 # Table of contents
 
-## Overview
-
-* [Playbook](README.md)
+* [Playbook & Template](README.md)
 
 ## Teardowns
 
-* [Template](docs/templates/teardown-template.md)
+* [Add teardowns here](teardowns/.gitkeep)
