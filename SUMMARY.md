@@ -4,8 +4,9 @@
 
 ## Framework
 
-* [SPEC-000: Teardowns](framework/SPEC-000-teardowns.md)
+* [SPEC-000: Discovery Specs](framework/SPEC-000-teardowns.md)
 
-## Template
+## Templates
 
-* [Teardown Template](TEARDOWN.md)
+* [Teardown](TEARDOWN.md)
+* [Scope](SCOPE.md)

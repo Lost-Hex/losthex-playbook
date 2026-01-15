@@ -1,4 +1,4 @@
-# SPEC-000: LostHex Teardowns
+# SPEC-000: LostHex Discovery Specs
 
 | | |
 |---|---|
@@ -109,6 +109,44 @@ acme-discovery/              # Created from losthex-playbook template
 
 Adapted from DevFactory's teardown methodology. DevFactory used teardowns for acquisition due diligence across hundreds of products. We simplified for operational efficiency—same rigor, 4-hour SLA.
 
-## Template
+---
 
-See [Teardown Template](../teardown-template.md) for the full template.
+## What's a Scope Spec?
+
+A scope spec defines **what we're building, who's building it, and when**. It follows a teardown—using findings to shape the work.
+
+Teardown → Scope → SOW → Build
+
+### Structure
+
+| Section | Purpose |
+|---------|---------|
+| **Executive Summary** | What, outcome, timeline |
+| **Objectives** | Success criteria |
+| **Scope** | In/out, assumptions |
+| **Resource Allocation** | Team, hours, duration |
+| **Timeline** | Milestones, Gantt |
+| **Deliverables** | What we hand over |
+| **Risks** | What could go wrong |
+| **Dependencies** | What we need from client |
+| **Sign-off** | Both parties agree |
+
+### Key Sections
+
+**Resource Allocation** — Who, how much, how long:
+
+| Role | Person | Allocation | Duration |
+|------|--------|------------|----------|
+| Tech Lead | Name | 20 hrs/week | 4 weeks |
+| Developer | Name | 30 hrs/week | 4 weeks |
+
+**Timeline** — Milestones with dates and deliverables.
+
+**From Teardown** — Explicitly connect scope to teardown findings.
+
+---
+
+## Templates
+
+- [Teardown Template](../TEARDOWN.md)
+- [Scope Template](../SCOPE.md)

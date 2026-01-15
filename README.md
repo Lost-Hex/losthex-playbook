@@ -17,7 +17,8 @@ Template for client discovery repos. Each client gets their own repo + GitBook s
 
 | File | Purpose |
 |------|---------|
-| `TEARDOWN.md` | The teardown template |
+| `TEARDOWN.md` | System analysis template |
+| `SCOPE.md` | Resource allocation + timeline template |
 | `inputs/` | Transcript + codebase (codebase gitignored) |
 | `framework/` | Internal reference (remove from nav for clients) |
 
