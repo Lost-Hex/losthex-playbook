@@ -1,58 +1,15 @@
-# Source directories - reference material, not part of losthex-base
-bon-architect-main/
-bonstart-develop/
-old-specs/
+# Client codebases - cloned locally for AI context, not committed
+**/inputs/codebase/
 
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
-
-# Testing
-coverage/
-
-# Next.js
-.next/
-out/
-build/
-dist/
-
-# SST
-.sst/
-.open-next/
 
 # Misc
 .DS_Store
-*.pem
 
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Local env files
-.env
-.env*.local
-
-# Vercel
-.vercel
-
-# TypeScript
-*.tsbuildinfo
-next-env.d.ts
+# Logs
+*.log
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.backup
-
-# Logs
-logs/
-*.log

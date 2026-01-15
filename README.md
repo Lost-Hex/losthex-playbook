@@ -7,13 +7,19 @@ Pre-project documentation—teardowns, discovery, proposals.
 ## Quick Start
 
 ```bash
-# Create teardown
-cp teardown-template.md teardowns/TEARDOWN-001-client-name.md
+# Create teardown folder
+mkdir -p teardowns/TEARDOWN-001-acme/inputs
+cp teardown-template.md teardowns/TEARDOWN-001-acme/TEARDOWN-001-acme.md
+
+# Clone client codebase (gitignored)
+git clone <client-repo> teardowns/TEARDOWN-001-acme/inputs/codebase
 
 # Lint
 npm install
 npm run lint:all
 ```
+
+Cursor can read the full codebase in `inputs/codebase/` during analysis.
 
 ## Structure
 

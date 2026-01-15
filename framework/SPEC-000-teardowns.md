@@ -66,7 +66,7 @@ What you need before starting a teardown:
 |-------|-----------|---------------|
 | **SME Interview** | 30-60 min call with someone who knows the system | Schedule via client |
 | **Transcript** | Written record of interview | Gemini/Otter auto-transcribe |
-| **Codebase Access** | Read access to repositories | GitHub invite or zip |
+| **Codebase** | Full repo cloned locally | GitHub invite or zip |
 
 ### Recommended
 
@@ -75,17 +75,23 @@ What you need before starting a teardown:
 | **AWS/Infra Access** | Read-only console access | IAM user or SSO |
 | **Database Access** | Query access for schema inspection | Credentials from client |
 | **Existing Docs** | Architecture diagrams, READMEs, wikis | Client shares |
-| **Analytics** | Usage data, error rates, performance | Client dashboard access |
-
-### Nice to Have
-
-| Input | What It Is | Why It Helps |
-|-------|-----------|--------------|
-| **Staging Environment** | Running instance to explore | See actual behavior |
-| **CI/CD Pipelines** | Build/deploy configuration | Understand deployment story |
-| **Monitoring/Logs** | Datadog, CloudWatch, etc. | See real-world issues |
 
 **Minimum viable teardown:** SME interview + codebase. Everything else improves depth.
+
+### Folder Structure
+
+```text
+teardowns/
+└── TEARDOWN-001-acme/
+    ├── TEARDOWN-001-acme.md       # The teardown
+    ├── inputs/
+    │   ├── sme-interview.md       # Transcript (committed)
+    │   └── codebase/              # Client repo (gitignored)
+    └── diagrams/
+        └── whiteboard.excalidraw
+```
+
+**We gitignore the codebase** — clone the client repo into `inputs/codebase/`. Cursor reads it during analysis, but we don't commit it (too big, potentially sensitive). Reference the commit SHA in your teardown for reproducibility.
 
 ## Process
 
