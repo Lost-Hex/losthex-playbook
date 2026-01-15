@@ -22,6 +22,34 @@ What success looks like:
 2. [Secondary objective]
 3. [Tertiary objective]
 
+## Success Metrics
+
+How we measure success:
+
+| Metric | Target | How to Measure |
+|--------|--------|----------------|
+| [Performance] | [e.g., API < 200ms p95] | [Load testing] |
+| [Reliability] | [e.g., 99.9% uptime] | [Monitoring] |
+| [Adoption] | [e.g., 80% users migrated] | [Analytics] |
+
+## Requirements
+
+### Functional
+
+| ID | Requirement | Priority |
+|----|-------------|----------|
+| FR-1 | [System shall do X] | Must |
+| FR-2 | [System shall do Y] | Must |
+| FR-3 | [System shall do Z] | Should |
+
+### Non-Functional
+
+| ID | Requirement | Target |
+|----|-------------|--------|
+| NFR-1 | Performance | [Response time, throughput] |
+| NFR-2 | Scalability | [Concurrent users, data volume] |
+| NFR-3 | Security | [Auth, encryption, compliance] |
+
 ---
 
 ## Scope
