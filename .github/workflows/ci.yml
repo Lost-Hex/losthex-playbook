@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main]
   pull_request:
-    branches: [main, staging]
+    branches: [main]
 
 jobs:
   lint:
-    name: Lint & Typecheck
+    name: Lint Docs
     runs-on: ubuntu-latest
     
     steps:
@@ -24,16 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Prettier check
-        run: npm run prettier:check
-
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Run TypeScript check
-        run: npm run typecheck
-
-      - name: Run Markdown lint (includes ITD rules)
+      - name: Run Markdown lint
         run: npm run lint:markdown
 
       - name: Install Vale
@@ -43,4 +34,4 @@ jobs:
           sudo mv vale /usr/local/bin/
 
       - name: Run Vale prose lint
-        run: vale --config .vale.ini framework/ docs/
+        run: npm run lint:prose

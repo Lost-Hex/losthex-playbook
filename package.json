@@ -1,25 +1,13 @@
 {
-  "name": "losthex-base",
+  "name": "losthex-playbook",
   "version": "1.0.0",
   "private": true,
-  "description": "LostHex starter template with spec framework",
-  "workspaces": [
-    "packages/*"
-  ],
+  "description": "LostHex discovery and pre-project documentation",
   "scripts": {
-    "dev": "npm run dev -w packages/next",
-    "build": "npm run build -w packages/next",
-    "sst:dev": "sst dev",
-    "sst:deploy": "sst deploy",
-    "lint": "npm run lint -w packages/next",
-    "lint:markdown": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore '**/bon-architect-main/**' --ignore '**/bonstart-develop/**' --ignore '**/old-specs/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --rules tooling/lint-rules/",
-    "lint:markdown:fix": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore '**/bon-architect-main/**' --ignore '**/bonstart-develop/**' --ignore '**/old-specs/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --rules tooling/lint-rules/ --fix",
-    "lint:prose": "vale --config .vale.ini framework/ docs/",
+    "lint:markdown": "markdownlint '**/*.md' --ignore '**/node_modules/**' --config tooling/.markdownlint.json --rules tooling/lint-rules/",
+    "lint:markdown:fix": "markdownlint '**/*.md' --ignore '**/node_modules/**' --config tooling/.markdownlint.json --rules tooling/lint-rules/ --fix",
+    "lint:prose": "vale --config .vale.ini docs/ teardowns/",
     "lint:all": "npm run lint:markdown && npm run lint:prose",
-    "prettier": "npm run prettier -w packages/next",
-    "prettier:check": "npm run prettier:check -w packages/next",
-    "typecheck": "npm run typecheck -w packages/next",
-    "losthex:init": "echo 'Setup script coming soon...'",
     "prepare": "husky"
   },
   "engines": {
@@ -28,9 +16,6 @@
   },
   "devDependencies": {
     "husky": "^9.1.7",
-    "markdownlint-cli": "^0.43.0",
-    "sst": "3.9.28",
-    "typescript": "^5.7.2"
-  },
-  "packageManager": "yarn@4.3.1+sha512.af78262d7d125afbfeed740602ace8c5e4405cd7f4735c08feb327286b2fdb2390fbca01589bfd1f50b1240548b74806767f5a063c94b67e431aabd0d86f7774"
+    "markdownlint-cli": "^0.43.0"
+  }
 }

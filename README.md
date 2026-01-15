@@ -1,33 +1,33 @@
-# LostHex Base
+# LostHex Playbook
 
-Starter template for LostHex client projects.
+Pre-project documentation. Teardowns, discovery, proposals—the stuff that happens before we clone `losthex-base`.
 
-**Click "Use this template" above to create a new project.**
+## What's Here
 
-## What's Included
+| Folder | Purpose |
+|--------|---------|
+| `teardowns/` | System analysis docs (understanding existing codebases) |
+| `docs/templates/` | Templates for teardowns |
 
-- Next.js 15 + SST (deploys to AWS)
-- Doc framework (syncs to GitBook)
-- API docs (auto-generated from Zod)
-- CI/CD (PR previews, staging, prod)
+## Teardowns
 
-## Setup
+A teardown is a structured analysis of an existing system. We write them when:
+
+- Taking over a codebase from another team
+- Evaluating a potential project
+- Documenting a system we need to integrate with
+
+### Create a Teardown
+
+```bash
+cp docs/templates/teardown-template.md teardowns/TEARDOWN-001-client-name.md
+```
+
+Then fill it out.
+
+## Linting
 
 ```bash
 npm install
-npm run dev
+npm run lint:all
 ```
-
-## Deploy
-
-Push to GitHub—CI handles it:
-
-| Branch | Environment |
-|--------|-------------|
-| `main` | Production |
-| `staging` | Staging |
-| PR | Preview |
-
-## Docs
-
-See the [full documentation](https://losthex.gitbook.io/losthex-docs).

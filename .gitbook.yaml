@@ -1,5 +1,0 @@
-root: ./
-
-structure:
-  readme: framework/ARCHITECTURE-OVERVIEW.md
-  summary: SUMMARY.md
