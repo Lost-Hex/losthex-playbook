@@ -27,13 +27,15 @@ cp docs/templates/teardown-template.md teardowns/TEARDOWN-001-client-name.md
 
 Then fill it out.
 
-## GitBook (Optional)
+## GitBook
 
-To share teardowns with clients:
+Each client playbook syncs to its own GitBook space:
 
 1. Create a GitBook space for the client
-2. Sync this repo to that space
-3. Client gets polished docs without GitHub access
+2. Connect GitHub → sync this repo
+3. Client reads polished docs without GitHub access
+
+The `SUMMARY.md` controls navigation. Update it as you add teardowns.
 
 ## Linting
 

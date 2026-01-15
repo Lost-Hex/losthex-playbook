@@ -4,8 +4,8 @@
   "private": true,
   "description": "LostHex discovery and pre-project documentation",
   "scripts": {
-    "lint:markdown": "markdownlint '**/*.md' --ignore '**/node_modules/**' --config tooling/.markdownlint.json --rules tooling/lint-rules/",
-    "lint:markdown:fix": "markdownlint '**/*.md' --ignore '**/node_modules/**' --config tooling/.markdownlint.json --rules tooling/lint-rules/ --fix",
+    "lint:markdown": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --rules tooling/lint-rules/",
+    "lint:markdown:fix": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --rules tooling/lint-rules/ --fix",
     "lint:prose": "vale --config .vale.ini docs/ teardowns/",
     "lint:all": "npm run lint:markdown && npm run lint:prose",
     "prepare": "husky"
