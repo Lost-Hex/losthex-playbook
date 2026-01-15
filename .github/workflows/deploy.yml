@@ -1,0 +1,133 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::160673083632:role/losthex-base-github-actions-GithubActionsRole
+          aws-region: us-east-1
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Prettier check
+        run: npm run prettier:check
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run TypeScript check
+        run: npm run typecheck
+
+      - name: Determine stage name
+        id: stage
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "name=prod" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            echo "name=staging" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            # PR deployments: use PR number as stage
+            STAGE="pr-${{ github.event.pull_request.number }}"
+            echo "name=$STAGE" >> $GITHUB_OUTPUT
+          else
+            echo "name=dev" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Unlock SST Stage (if locked)
+        run: |
+          echo "Attempting to unlock stage: ${{ steps.stage.outputs.name }}"
+          npx sst unlock --stage ${{ steps.stage.outputs.name }} || echo "No lock to remove"
+
+      - name: Deploy with SST
+        id: deploy
+        run: |
+          echo "Deploying to stage: ${{ steps.stage.outputs.name }}"
+          npx sst deploy --stage ${{ steps.stage.outputs.name }} | tee deploy_output.log
+          exit ${PIPESTATUS[0]}
+
+      - name: Extract Site URL
+        id: url
+        if: success()
+        run: |
+          # Try multiple patterns to extract URL
+          SITE=$(grep -E "^\s*url:\s*https" deploy_output.log | sed 's/.*url:\s*//' | head -n 1)
+          if [[ -z "$SITE" ]]; then
+            # Fallback: look for CloudFront URL
+            SITE=$(grep -oE "https://[a-z0-9]+\.cloudfront\.net" deploy_output.log | head -n 1)
+          fi
+          if [[ -z "$SITE" ]]; then
+            echo "::warning::Could not extract Site URL"
+            echo "url=" >> $GITHUB_OUTPUT
+          else
+            echo "🌐 Deployed to: $SITE"
+            echo "url=$SITE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && steps.url.outputs.url != ''
+        uses: ./.github/actions/comment-pr-url
+        with:
+          deployment-url: ${{ steps.url.outputs.url }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate OpenAPI spec with deployed URL
+        if: github.ref == 'refs/heads/main' && steps.url.outputs.url != ''
+        env:
+          NEXT_PUBLIC_API_URL: ${{ steps.url.outputs.url }}
+        run: npm run generate:openapi -w packages/next
+
+      - name: Publish OpenAPI to GitBook
+        if: github.ref == 'refs/heads/main' && steps.url.outputs.url != ''
+        env:
+          GITBOOK_TOKEN: ${{ secrets.GITBOOK_TOKEN }}
+        run: |
+          npx @gitbook/cli openapi publish \
+            --spec "losthex-base-api" \
+            --organization "pK3y0GwUnGXL1i1zVvZ1" \
+            docs/api/openapi.json
+
+      - name: Create deployment summary
+        if: success()
+        run: |
+          echo "# 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [[ -n "${{ steps.url.outputs.url }}" ]]; then
+            echo "🌐 **URL**: [${{ steps.url.outputs.url }}](${{ steps.url.outputs.url }})" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "**Stage:** \`${{ steps.stage.outputs.name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY

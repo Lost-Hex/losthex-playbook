@@ -1,0 +1,56 @@
+name: Cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  cleanup:
+    name: Remove Ephemeral Environment
+    runs-on: ubuntu-latest
+    # Only run for merged PRs or closed PRs that had deployments
+    if: github.event.pull_request.head.ref != 'main' && github.event.pull_request.head.ref != 'staging'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::160673083632:role/losthex-base-github-actions-GithubActionsRole
+          aws-region: us-east-1
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get SST stage name
+        id: stage
+        run: |
+          # Convert PR branch to SST stage name (lowercase, replace special chars)
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          STAGE=$(echo "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | cut -c1-20)
+          echo "name=$STAGE" >> $GITHUB_OUTPUT
+
+      - name: Remove SST deployment
+        run: |
+          echo "Removing stage: ${{ steps.stage.outputs.name }}"
+          npx sst remove --stage ${{ steps.stage.outputs.name }} || echo "Stage may not exist or removal failed"
+
+      - name: Create cleanup summary
+        run: |
+          echo "# 🧹 Environment Cleanup" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Stage Removed:** \`${{ steps.stage.outputs.name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**PR:** #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`${{ github.event.pull_request.head.ref }}\`" >> $GITHUB_STEP_SUMMARY
