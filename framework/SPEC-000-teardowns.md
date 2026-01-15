@@ -109,44 +109,14 @@ acme-discovery/              # Created from losthex-playbook template
 
 Adapted from DevFactory's teardown methodology. DevFactory used teardowns for acquisition due diligence across hundreds of products. We simplified for operational efficiency—same rigor, 4-hour SLA.
 
----
+## What's Next?
 
-## What's a Scope Spec?
+After teardown, create a [Scope Spec](SPEC-001-scope.md) to define resources and timeline.
 
-A scope spec defines **what we're building, who's building it, and when**. It follows a teardown—using findings to shape the work.
-
+```text
 Teardown → Scope → SOW → Build
+```
 
-### Structure
+## Template
 
-| Section | Purpose |
-|---------|---------|
-| **Executive Summary** | What, outcome, timeline |
-| **Objectives** | Success criteria |
-| **Scope** | In/out, assumptions |
-| **Resource Allocation** | Team, hours, duration |
-| **Timeline** | Milestones, Gantt |
-| **Deliverables** | What we hand over |
-| **Risks** | What could go wrong |
-| **Dependencies** | What we need from client |
-| **Sign-off** | Both parties agree |
-
-### Key Sections
-
-**Resource Allocation** — Who, how much, how long:
-
-| Role | Person | Allocation | Duration |
-|------|--------|------------|----------|
-| Tech Lead | Name | 20 hrs/week | 4 weeks |
-| Developer | Name | 30 hrs/week | 4 weeks |
-
-**Timeline** — Milestones with dates and deliverables.
-
-**From Teardown** — Explicitly connect scope to teardown findings.
-
----
-
-## Templates
-
-- [Teardown Template](../TEARDOWN.md)
-- [Scope Template](../SCOPE.md)
+See [Teardown Template](../TEARDOWN.md).
