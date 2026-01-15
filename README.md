@@ -1,34 +1,18 @@
-# LostHex Playbook
+# [Client Name] Discovery
 
-Pre-project documentation—teardowns, discovery, proposals.
+Technical discovery for [Client Name].
 
-**Click "Use this template" to create a client-specific playbook.**
+## Documents
 
-## Quick Start
+- [Teardown](TEARDOWN.md) — System analysis and recommendations
 
-```bash
-# Create teardown folder
-mkdir -p teardowns/TEARDOWN-001-acme/inputs
-cp teardown-template.md teardowns/TEARDOWN-001-acme/TEARDOWN-001-acme.md
+## Inputs
 
-# Clone client codebase (gitignored)
-git clone <client-repo> teardowns/TEARDOWN-001-acme/inputs/codebase
+| Input | Location |
+|-------|----------|
+| Transcript | `inputs/sme-interview.md` |
+| Codebase | `inputs/codebase/` (local only) |
 
-# Lint
-npm install
-npm run lint:all
-```
+## Internal
 
-Cursor can read the full codebase in `inputs/codebase/` during analysis.
-
-## Structure
-
-| File | Purpose |
-|------|---------|
-| [SPEC-000](framework/SPEC-000-teardowns.md) | What teardowns are, why we write them |
-| [Template](teardown-template.md) | Copy this to start a teardown |
-| `teardowns/` | Your teardowns go here |
-
-## GitBook
-
-Each client playbook syncs to its own GitBook space. Clients read polished docs without GitHub access.
+- [What's a Teardown?](framework/SPEC-000-teardowns.md)

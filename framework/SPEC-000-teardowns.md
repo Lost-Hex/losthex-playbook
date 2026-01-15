@@ -78,20 +78,23 @@ What you need before starting a teardown:
 
 **Minimum viable teardown:** SME interview + codebase. Everything else improves depth.
 
-### Folder Structure
+### Repo Structure
+
+Each client gets their own repo (from this template):
 
 ```text
-teardowns/
-└── TEARDOWN-001-acme/
-    ├── TEARDOWN-001-acme.md       # The teardown
-    ├── inputs/
-    │   ├── sme-interview.md       # Transcript (committed)
-    │   └── codebase/              # Client repo (gitignored)
-    └── diagrams/
-        └── whiteboard.excalidraw
+acme-discovery/              # Created from losthex-playbook template
+├── README.md                # Client-facing landing page
+├── TEARDOWN.md              # The teardown (main document)
+├── inputs/
+│   ├── sme-interview.md     # Transcript (committed)
+│   └── codebase/            # Client repo (gitignored)
+└── framework/               # Internal reference (not in GitBook nav)
 ```
 
 **We gitignore the codebase** — clone the client repo into `inputs/codebase/`. Cursor reads it during analysis, but we don't commit it (too big, potentially sensitive). Reference the commit SHA in your teardown for reproducibility.
+
+**GitBook shows:** README + TEARDOWN only. Framework is internal.
 
 ## Process
 

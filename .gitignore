@@ -1,5 +1,5 @@
-# Client codebases - cloned locally for AI context, not committed
-**/inputs/codebase/
+# Client codebase - cloned locally for AI context, not committed
+inputs/codebase/
 
 # Dependencies
 node_modules/

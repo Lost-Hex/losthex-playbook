@@ -25,11 +25,9 @@
 | Input | Reference |
 |-------|-----------|
 | SME Interview | [Name, role] — [Recording link] |
-| Transcript | `inputs/sme-interview.md` |
-| Codebase | [Repo URL] @ `abc123` → `inputs/codebase/` |
+| Transcript | [`inputs/sme-interview.md`](inputs/sme-interview.md) |
+| Codebase | [Repo URL] @ `abc123` |
 | AWS | Account `123456789` (read-only) |
-
-**Setup:** Save transcript to `inputs/sme-interview.md`. Clone client repo into `inputs/codebase/` (gitignored).
 
 ### 1-Sentence Goal
 
