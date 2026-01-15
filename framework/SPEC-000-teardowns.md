@@ -62,11 +62,11 @@ What you need before starting a teardown:
 
 ### Required
 
-| Input | What It Is | How to Get It |
-|-------|-----------|---------------|
-| **SME Interview** | 30-60 min call with someone who knows the system | Schedule via client |
-| **Transcript** | Written record of interview | Gemini/Otter auto-transcribe |
-| **Codebase** | Full repo cloned locally | GitHub invite or zip |
+| Input | What It Is | Committed? |
+|-------|-----------|------------|
+| **SME Interview** | 30-60 min call | Link to recording |
+| **Transcript** | Written record of interview | ✅ Yes (`inputs/sme-interview.md`) |
+| **Codebase** | Full repo cloned locally | ❌ No (gitignored) |
 
 ### Recommended
 

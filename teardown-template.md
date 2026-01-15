@@ -22,13 +22,14 @@
 
 ### Inputs
 
-| Input | Source | Reference |
-|-------|--------|-----------|
-| SME Interview | [Name, role] | `inputs/sme-interview.md` |
-| Codebase | [Repo URL] | `inputs/codebase/` @ commit `abc123` |
-| AWS Access | [Account ID] | Read-only IAM |
+| Input | Reference |
+|-------|-----------|
+| SME Interview | [Name, role] — [Recording link] |
+| Transcript | `inputs/sme-interview.md` |
+| Codebase | [Repo URL] @ `abc123` → `inputs/codebase/` |
+| AWS | Account `123456789` (read-only) |
 
-> **Setup:** Clone client repo into `inputs/codebase/` (gitignored). Record commit SHA above.
+**Setup:** Save transcript to `inputs/sme-interview.md`. Clone client repo into `inputs/codebase/` (gitignored).
 
 ### 1-Sentence Goal
 
