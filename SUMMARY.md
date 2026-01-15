@@ -1,7 +1,15 @@
 # Table of contents
 
-* [Playbook & Template](README.md)
+* [Playbook](README.md)
+
+## Framework
+
+* [SPEC-000: Teardowns](framework/SPEC-000-teardowns.md)
+
+## Templates
+
+* [Teardown Template](teardown-template.md)
 
 ## Teardowns
 
-* [Add teardowns here](teardowns/.gitkeep)
+* [Your teardowns go here](teardowns/.gitkeep)
