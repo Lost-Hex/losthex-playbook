@@ -1,18 +1,29 @@
-# [Client Name] Discovery
+# LostHex Playbook
 
-Technical discovery for [Client Name].
+Template for client discovery repos. Each client gets their own repo + GitBook space.
 
-## Documents
+**Click "Use this template"** to create a client-specific discovery repo.
 
-- [Teardown](TEARDOWN.md) — System analysis and recommendations
+## When You Clone for a Client
 
-## Inputs
+1. Rename repo to `[client]-discovery`
+2. Update `TEARDOWN.md` with actual content
+3. Save transcript to `inputs/sme-interview.md`
+4. Clone client codebase to `inputs/codebase/` (gitignored)
+5. Update `SUMMARY.md` — remove Framework section, keep only Overview + Teardown
+6. Sync to client's GitBook space
 
-| Input | Location |
-|-------|----------|
-| Transcript | `inputs/sme-interview.md` |
-| Codebase | `inputs/codebase/` (local only) |
+## Structure
 
-## Internal
+| File | Purpose |
+|------|---------|
+| `TEARDOWN.md` | The teardown template |
+| `inputs/` | Transcript + codebase (codebase gitignored) |
+| `framework/` | Internal reference (remove from nav for clients) |
 
-- [What's a Teardown?](framework/SPEC-000-teardowns.md)
+## Linting
+
+```bash
+npm install
+npm run lint:all
+```
