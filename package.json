@@ -8,6 +8,7 @@
     "lint:markdown:fix": "markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore 'SUMMARY.md' --config tooling/.markdownlint.json --fix",
     "lint:prose": "vale --config .vale.ini framework/",
     "lint:all": "npm run lint:markdown && npm run lint:prose",
+    "build:vocab": "bash tooling/scripts/build-vocab.sh",
     "prepare": "husky"
   },
   "engines": {
